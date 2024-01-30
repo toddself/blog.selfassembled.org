@@ -13,9 +13,10 @@ jobs:
       - name: build
         run: sh build.sh
       - name: upload
-        uses: actions/upload-artifact@main
+        uses: actions/upload-pages-artifact@3.0.0
         with:
           name: github-pages
           path: ${{ runner.temp }}/artifact.tar
       - name: deploy
-        uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v4.0.3
