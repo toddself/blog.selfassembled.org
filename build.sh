@@ -23,10 +23,3 @@ cp -R assets/* "${INPUT_PATH}"/. || true
 chmod -c -R +rX "${INPUT_PATH}" | while read line; do
   echo "::warning title=Invalid file permissions automatically fixed::$line"
 done
-tar \
-  --dereference --hard-dereference \
-  --directory "${INPUT_PATH}" \
-  -cvf "${RUNNER_TEMP}/artifact.tar" \
-  --exclude=.git \
-  --exclude=.github \
-  .
