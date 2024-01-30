@@ -1,6 +1,6 @@
-# whatever.todds.cooking
+# blog.selfassembled.org
 
-[The blog](https://whatever.todds.cooking), but like, in source format. 
+[The blog](https://blog.selfassembled.org), but like, in source format. 
 
 This is built using [blog-builder](https://github.com/toddself/blog-builder). Shitty name, what are you gonna do.
 

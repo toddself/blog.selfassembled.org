@@ -18,7 +18,7 @@ fi
 ./${BIN_NAME} data "${INPUT_PATH}" 
 
 # copy assets
-cp -R assets/* "${INPUT_PATH}"/.
+cp -R assets/* "${INPUT_PATH}"/. || true
 
 chmod -c -R +rX "${INPUT_PATH}" | while read line; do
   echo "::warning title=Invalid file permissions automatically fixed::$line"
