@@ -15,7 +15,7 @@ else
   chmod +x ${BIN_NAME}
 fi
 
-./${BIN_NAME} data "${INPUT_PATH}" 
+./${BIN_NAME} data "${INPUT_PATH}"  --title "blog.selfassembled.org"
 
 # copy assets
 cp -R assets/* "${INPUT_PATH}"/. || true
