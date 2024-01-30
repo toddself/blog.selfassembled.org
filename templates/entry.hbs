@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The blog that assembles itself">
+    <title>{{title}}</title>
+    <link rel="alternate" type="application/rss+xml" title="blog.selfassembled.org, but in RSS" href="https://blog.selfassembled.org/index.rss">
+    <style>{{>style}}</style>
+  </head>
+  <body>
+    <header><h1><a href="/" class="title">{{title}}</a></h1></header>
+    <main class="content">
+<article class="post">
+  <div>
+    <h2><a href="{{url}}">{{{title}}}</a></h2>
+    {{{contents}}}
+  </div>
+  <time>{{modified}}</time>
+  Tags: <ul class="tags">
+  {{#each tags}}
+    <li class="tags"><a href="tags.html#{{this}}">{{this}}</a></li>
+  {{/each}}
+  </ul>
+  <nav><a href="index.html">back home</a></nav>
+</article>
+    <footer class="content">Find me on: <a rel="me" href="https://spacelase.rs/@todd">Mastodon</a><br>All content copyright © {{year}}, License: <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International</a><br>Source code: <a href="https://github.com/toddself/blog.selfassembled.org">github</a><br>Last updated: {{pub_date}}</footer>
+  </body>
+</html>
