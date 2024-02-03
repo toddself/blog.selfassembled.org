@@ -1,7 +1,7 @@
 ---
 date: 2024-02-01T15:43:00-08:00
 tags: cross-compile,rust,go,zig
-title: Cross-compiling Rust & Go (featuring Zig?)
+title: Cross-compiling Rust
 ---
 
 At $dayjob my team writes a bunch of CLI tools in Rust (and a few various tools in Go) that we need to run in a wide variety of environments:
