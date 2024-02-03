@@ -1,17 +1,21 @@
 ---
 date: 2024-02-01T15:43:00-08:00
-tags: cross-compile,rust,go,zig
+tags: cross-compile,Rust,go
+:q
+gs
+q
+
 title: Cross-compiling Rust
 ---
 
-At $dayjob my team writes a bunch of CLI tools in Rust (and a few various tools in Go) that we need to run in a wide variety of environments:
+At `$dayjob` my team writes a bunch of CLI tools in Rust (and a few various tools in Go) that we need to run in a wide variety of environments:
 
-* x86-64 for Linux (GNU libc), MacOS and Windows (ideally with MinGW)
-* aarch64/arm64 for Linux (GNU libc) and MacOS
+* `x86-64` for Linux (GNU libc), MacOS and Windows (ideally with MinGW)
+* `aarch64/arm64` for Linux (GNU libc) and MacOS
 
 For a long time this has meant we spin up a whole bunch of CI machines, one for each platform, and compile the tools natively for that platform. However, this is not the best option available for us.  Since we manage our own runner pools (using GitHub Actions), this means we need to maintain sets of these machines, and as far as MacOS and Windows we're relying on the public runner pool infrastructure, which is both more costly and disallows us from accessing internal company systems.  (This has started to become a problem as we need to access Rust crates which are published internally to build some of these tools!). However, Rust and Go are supposed to be pretty good at handling cross-compiling, so lets give this a shot!
 
-We already "cross-compile" some of our work, as we write HTTP Proxy filters in Rust and compile them to WASM based on the [proxy-wasm](https://github.com/proxy-wasm/spec) spec. So, my naïve first attempt was as simple as installing the Rust toolchain for a given platform triple (why it's a triple when there are more than three items in sometimes?) and give it a go. (I'm running this all on an x86_64 Debian machine, so package names will be specific to that platform.)h
+We already "cross-compile" some of our work, as we write HTTP Proxy filters in Rust and compile them to WASM based on the [proxy-wasm](https://github.com/proxy-wasm/spec) spec. So, my naïve first attempt was as simple as installing the Rust toolchain for a given platform triple (why it's a triple when there are more than three items in sometimes?) and give it a go. (I'm running this all on an x86_64 Debian machine, so package names will be specific to that platform.)
 
 ```bash
 rust up target add x86_64-pc-windows-gnu
@@ -33,7 +37,7 @@ Caused by:
 
 Oh no! What's this "Is `x86_64-w64-mingw32-gcc` installed?" Wait, why are we calling `gcc`? I thought this was Rust?!
 
-Well, it is rust, but it looks like we're actually compiling some crypto library written in C and then accessing it from Rust. So our Rust toolchain needs to be able to invoke a functional C compiler for our target platform. Well, `clang` is supposed to be cross-platform out of the box right? Lets give that a shot, and tell `cargo` that we want to use `clang` as our C compiler.
+Well, it is Rust, but it looks like we're actually compiling some crypto library written in C and then accessing it from Rust. So our Rust toolchain needs to be able to invoke a functional C compiler for our target platform. Well, `clang` is supposed to be cross-platform out of the box right? Lets give that a shot, and tell `cargo` that we want to use `clang` as our C compiler.
 
 ```bash
 CC=clang cargo build --target x86_64-pc-windows-gnu
