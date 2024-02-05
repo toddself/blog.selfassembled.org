@@ -25,4 +25,4 @@ jobs:
           FM_USER: ${{ secrets.FM_USER }}
           FM_PASS: ${{ secrets.FM_PASS }}
         run: |
-          curl -X PUT -d index.html https://myfiles.fastmail.com/selfassembled.org/index.html -u "${FM_USER}":"${FM_PASS}"
+          curl -X PUT -d @index.html https://myfiles.fastmail.com/selfassembled.org/index.html -u "${FM_USER}":"${FM_PASS}"
