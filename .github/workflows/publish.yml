@@ -20,3 +20,9 @@ jobs:
       - name: deploy
         id: deployment
         uses: actions/deploy-pages@v4.0.3
+      - name: update index
+        env:
+          FM_USER: ${{ secrets.FM_USER }}
+          FM_PASS: ${{ secrets.FM_PASS }}
+        run: |
+          curl -X PUT -d index.html https://myfiles.fastmail.com/selfassembled.org/index.html -u ${FM_USER}:${FM_PASS}
