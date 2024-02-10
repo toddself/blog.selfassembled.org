@@ -1,10 +1,6 @@
 ---
 date: 2024-02-01T15:43:00-08:00
 tags: cross-compile,Rust,go
-:q
-gs
-q
-
 title: Cross-compiling Rust
 ---
 
