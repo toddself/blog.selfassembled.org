@@ -1,0 +1,9 @@
+entries = 20
+template_dir = "templates"
+src = "data"
+dest = "dist"
+title = "blog.selfassembled.org"
+truncate = 600
+description = "the blog that assembles itself"
+url = "https://blog.selfassembled.org"
+author = "Todd Kennedy"
