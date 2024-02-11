@@ -3,13 +3,18 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="og:title" content="{{title}}">
-    <meta name="og:description" content="{{description}}...">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
     {{#if share_image}}
-      <meta name="og:image" content="{{site_url}}{{share_image}}">
+      <meta property="og:image" content="{{site_url}}{{share_image}}">
+      <meta name="twitter:image" content="{{site_ur}}{{share_image}}">
     {{/if}}
-    <meta name="og:url" content="{{site_url}}{{url}}">
+    <meta property="og:url" content="{{site_url}}{{url}}">
+    <meta property="twitter:url" content="{{site_url}}{{url}}">
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{title}}">
+    <meta name="twitter:description" content="{{description}}">
+
     <title>{{title}}</title>
     <link rel="alternate" type="application/rss+xml" title="{{title}}" href="{{site_url}}/index.rss">
     <style>{{>style}}</style>
