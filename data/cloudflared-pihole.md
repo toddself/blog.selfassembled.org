@@ -119,8 +119,8 @@ Description=Renew tls cert
 [Service]
 Type=oneshot
 User=lego
-Environment=/etc/secrets/porkbun
-ExecStart=/usr/local/bin/lego --email $EMAIL --dns porkbun --pem --path /etc/certs --domains=$DOMAIN --renew-hook="/usr/local/bin/cert-renew.sh" renew
+EnvironmentFile=/etc/secrets/porkbun
+ExecStart=/usr/local/bin/lego --email $EMAIL --dns porkbun --pem --path /etc/certs --domains=$DOMAIN renew --renew-hook="/usr/local/bin/cert-renew.sh"
 PrivateTmp=true
 WorkingDirectory=/etc/certs
 ```
@@ -137,10 +137,10 @@ OnCalendar=* *-*-01 2:56
 RandomizeDelaySec=1h
 
 [Install]
-Wantedby=timers.target
+WantedBy=timers.target
 ```
 
-This will check for a renewal once a month.
+This will check for a renewal once a month. You'll want to enable this timer: `systemctl enable lego-acme.timer`
 
 I also added a renew hook to the script to restart lighttpd after the cert has been renewed:
 
@@ -178,3 +178,5 @@ And then go to Firewall -> Rules -> LAN and create another two rules:
 ![](dns-over-tls.png)
 
 In these rules we can create an invert match so they say anything that _isn't_ our Pi-Hole is unable to make connections over ports 853 or 443 to the servers on this list. I've been running this rule for 2 1/2 years and, aside from my work VPN, have not run into a problem. (I have additional rules that allow my work laptop, which has a static IP internally, to access ths correct DNS services for my job. This is an exercise left to the reader.)
+
+_This post has been updated to fix the position of the command `renew` and to change `Environment` to `EnvironmentFile` in the service file for the renewal, and to fix the `WantedBy` section in the systemd timer._
