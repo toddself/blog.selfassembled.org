@@ -133,14 +133,13 @@ Description=Renew certs
 
 [Timer]
 Persistent=true
-OnCalendar=* *-*-01 2:56
-RandomizeDelaySec=1h
+OnCalendar=monthly
 
 [Install]
 WantedBy=timers.target
 ```
 
-This will check for a renewal once a month. You'll want to enable this timer: `systemctl enable lego-acme.timer`
+This will check for a renewal once a month. You'll want to enable and start this timer: `systemctl enable lego-acme.timer && systemctl start lego-acme.timer`
 
 I also added a renew hook to the script to restart lighttpd after the cert has been renewed:
 
